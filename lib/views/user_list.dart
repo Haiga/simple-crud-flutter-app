@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:simple_crud_flutter_app/components/user_tile.dart';
 import 'package:simple_crud_flutter_app/models/user.dart';
 import 'package:simple_crud_flutter_app/providers/users.dart';
+import 'package:simple_crud_flutter_app/routes/app_routes.dart';
 
 class UserList extends StatelessWidget {
   @override
@@ -14,8 +15,9 @@ class UserList extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                users.put(User(
-                    id: '', name: 'Ted', email: 'Ted@Ted.com', avatarUrl: ''));
+                //users.put(User(
+                //    id: '', name: 'Ted', email: 'Ted@Ted.com', avatarUrl: ''));
+                Navigator.of(context).pushNamed(AppRoutes.USER_FORM);
               },
               icon: Icon(Icons.add))
         ],
