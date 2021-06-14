@@ -3,8 +3,14 @@ import 'package:provider/provider.dart';
 import 'package:simple_crud_flutter_app/models/user.dart';
 import 'package:simple_crud_flutter_app/providers/users.dart';
 
-class UserForm extends StatelessWidget {
+class UserForm extends StatefulWidget {
+  @override
+  _UserFormState createState() => _UserFormState();
+}
+
+class _UserFormState extends State<UserForm> {
   final _form = GlobalKey<FormState>();
+
   final Map<String, String> _formData = {};
 
   void _loadFormData(User? user) {
@@ -17,9 +23,14 @@ class UserForm extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     final User? user = ModalRoute.of(context)!.settings.arguments as User?;
     _loadFormData(user);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Formulário de Usuário'),
