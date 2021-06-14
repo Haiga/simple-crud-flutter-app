@@ -6,8 +6,20 @@ import 'package:simple_crud_flutter_app/providers/users.dart';
 class UserForm extends StatelessWidget {
   final _form = GlobalKey<FormState>();
   final Map<String, String> _formData = {};
+
+  void _loadFormData(User? user) {
+    if (user != null) {
+      _formData['id'] = user.id;
+      _formData['name'] = user.name;
+      _formData['email'] = user.email;
+      _formData['url'] = user.avatarUrl;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final User? user = ModalRoute.of(context)!.settings.arguments as User?;
+    _loadFormData(user);
     return Scaffold(
       appBar: AppBar(
         title: Text('Formulário de Usuário'),
@@ -35,6 +47,7 @@ class UserForm extends StatelessWidget {
           child: Column(
             children: [
               TextFormField(
+                initialValue: _formData['name'],
                 decoration: InputDecoration(labelText: 'Nome'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -48,10 +61,12 @@ class UserForm extends StatelessWidget {
                 onSaved: (value) => _formData['name'] = value!,
               ),
               TextFormField(
+                initialValue: _formData['email'],
                 decoration: InputDecoration(labelText: 'Email'),
                 onSaved: (value) => _formData['email'] = value!,
               ),
               TextFormField(
+                initialValue: _formData['url'],
                 decoration: InputDecoration(labelText: 'URL do avatar'),
                 onSaved: (value) => _formData['url'] = value!,
               )
