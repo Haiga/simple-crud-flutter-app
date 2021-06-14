@@ -1,6 +1,10 @@
 # simple_crud_flutter_app
 
-A new Flutter project.
+A new Flutter project (simple CRUD in flutter).
+
+## Developed in course from udemy
+
+https://www.udemy.com/course/flutter-desenvolva-um-cadastro-completo-2020/
 
 ## Getting Started
 
@@ -14,3 +18,5 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
