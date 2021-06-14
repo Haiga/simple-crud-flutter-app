@@ -11,7 +11,7 @@ class UserTile extends StatelessWidget {
   const UserTile(this.user);
   @override
   Widget build(BuildContext context) {
-    final Users users = Provider.of(context); //, listen: false
+    final Users users = Provider.of(context, listen: false); //, listen: false
     final avatar = user.avatarUrl.isEmpty
         ? CircleAvatar(child: Icon(Icons.person))
         : CircleAvatar(backgroundImage: NetworkImage(user.avatarUrl));
@@ -34,7 +34,26 @@ class UserTile extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  users.remove(user);
+                  showDialog(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                            title: Text('Excluir Usuário'),
+                            content: Text('Certeza?'),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('Não')),
+                              TextButton(
+                                  onPressed: () {
+                                    users.remove(user);
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('Sim')),
+                            ],
+                          ));
+                  //users.remove(user);
                 },
                 icon: Icon(Icons.delete),
                 color: Colors.red,
